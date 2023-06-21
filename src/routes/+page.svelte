@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { Canvas } from '@threlte/core';
+</script>
+
+<div class="absolute w-full h-full top-0 left-0">
+	<Canvas>Hello</Canvas>
+</div>
