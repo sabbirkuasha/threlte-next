@@ -26,7 +26,7 @@
 
 <T.GridHelper args={[10, 10]} />
 
-<Cloth scale={5} position={[-5, 0, 0]} />
+<Cloth scale={5} position={[0, 0, 0]} />
 
 <!-- <T.Mesh position={[0, 1, 0]} geometry={new BoxGeometry(2, 2, 2)} scale={1}>
 	<T.MeshStandardMaterial

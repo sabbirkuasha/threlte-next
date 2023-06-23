@@ -4,41 +4,67 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./Cloth.glb
 -->
 
 <script>
-	import { Group } from 'three';
+	import { Group, Material } from 'three';
 	import { T, forwardEventHandlers } from '@threlte/core';
 	import { useGltf } from '@threlte/extras';
-
+	import { onMount } from 'svelte';
+	import * as THREE from 'three';
 	export const ref = new Group();
 
 	const gltf = useGltf('/Cloth.glb');
 
+	$: console.log($gltf);
+
 	const component = forwardEventHandlers();
 
 	import { useTexture } from '@threlte/extras';
+
 	const cloth_baseColor = useTexture('/export/Untitled material_BaseColor.jpg');
-
 	const cloth_normal = useTexture('/export/Untitled material_Normal.jpg');
-
 	const cloth_roughnessMap = useTexture('/export/Untitled material_Roughness.jpg');
-
 	const cloth_opacity = useTexture('/export/Untitled material_Opacity.jpg');
-
 	const cloth_height = useTexture('/export/Untitled material_Height.jpg');
+	let baseColor;
+	let normal;
+	let roughness;
+	let opacity;
+	let height;
+	// $: console.log(gltf.materials['Material.001']);
+	// $gltf.materials['Material.001'].normalMap = cloth_normal;
+	// $gltf.materials['Material.001'].roughnessMap = cloth_roughnessMap;
+	// $gltf.materials['Material.001'].alphaMap = cloth_opacity;
+	// $gltf.materials['Material.001'].displacementMap = cloth_height;
+	// let displaceMap = $cloth_height;
 
+	// $: console.log(displaceMap); // eventually THREE.Texture
 	// $: console.log($cloth_height); // eventually THREE.Texture
+
+	onMount(async () => {
+		baseColor = new THREE.TextureLoader().load('/export/Untitled material_BaseColor.jpg');
+		normal = new THREE.TextureLoader().load('/export/Untitled material_Normal.jpg');
+		roughness = new THREE.TextureLoader().load('/export/Untitled material_Roughness.jpg');
+		opacity = new THREE.TextureLoader().load('/export/Untitled material_Opacity.jpg');
+		height = new THREE.TextureLoader().load('/export/Untitled material_Height.jpg');
+	});
 </script>
 
 <T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
 	{#await gltf}
 		<slot name="fallback" />
 	{:then gltf}
+		<!-- {console.log(gltf.materials['Material.001'].displacementMap)} -->
+		<!-- {(gltf.materials['Material.001'].normalMap = normal)} -->
+		<!-- {(gltf.materials['Material.001'].roughnessMap = roughness)} -->
+		<!-- {(gltf.materials['Material.001'].alphaMap = opacity)}
+		{(gltf.materials['Material.001'].displacementMap = height)}
+		{console.log(gltf.materials['Material.001'])} -->
 		<!-- <T.Mesh
 			geometry={gltf.nodes.Cloth.geometry}
 			material={gltf.materials['Material.001']}
 			position={[0, 0.4, 0]}
 			scale={0.01}
 		/> -->
-		<T.Mesh geometry={gltf.nodes.Cloth.geometry} position={[0, 0.4, 0]} scale={0.01}>
+		<!-- <T.Mesh geometry={gltf.nodes.Cloth.geometry} position={[0, 0.4, 0]} scale={0.01}>
 			<T.MeshStandardMaterial
 				color={'#ffffff'}
 				roughness={1}
@@ -50,6 +76,21 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./Cloth.glb
 				transparent={true}
 				displacementMap={$cloth_height}
 				displacementScale={10}
+			/>
+		</T.Mesh> -->
+		<T.Mesh geometry={gltf.nodes.Cloth.geometry} position={[0, 0.4, 0]} scale={0.01}>
+			<T.MeshPhysicalMaterial
+				color={'#ffffff'}
+				roughness={1}
+				metalness={1}
+				map={$cloth_baseColor}
+				normalMap={$cloth_normal}
+				roughnessMap={$cloth_roughnessMap}
+				alphaMap={$cloth_opacity}
+				transparent={true}
+				displacementMap={$cloth_height}
+				displacementScale={10}
+				wireframe={false}
 			/>
 		</T.Mesh>
 	{:catch error}
