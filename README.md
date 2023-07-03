@@ -4,16 +4,24 @@
 
 ## Completed
 
-GLTF Export from 3d **(Done)**
+GLTF Export from Blender **(Done)**
 
-GLTF Import in Sveltekit **(Done)**
+GLTF Import in Sveltekit/ Threlte **(Done)**
 
-Chaning Textures of existing model **(Done)**
+Changing Textures of existing model **(Done)**
 
 ## Challenges
 
-Add Dummy helper, Axis to any object at any time
+Loading Screen when loading 3d content **(High Priority)**
 
-GLTF Animation export, import & customization, configuration
+Incorporate HTML **(High Priority)**
 
-Imporving render quality (Post process or anything that make the render looks realistic)
+Incorporate Text **(High Priority)**
+
+Interactivity **(Meidum Priority)**
+
+Add Dummy helper, Axis to any object at any time **(Low Priority)**
+
+GLTF Animation export, import & customization, configuration **(Low Prority)**
+
+Imporving render quality (Post process or anything that make the render looks realistic) **(Low Priority)**
