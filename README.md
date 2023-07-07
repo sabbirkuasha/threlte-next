@@ -12,6 +12,8 @@ Changing Textures of existing model **(Done)**
 
 ## Challenges
 
+Limiting camera Movement with flexibilities **(High Priority)**
+
 Loading Screen when loading 3d content **(High Priority)**
 
 Incorporate HTML **(High Priority)**
