@@ -13,7 +13,7 @@
 	const cloth_roughnessMap = useTexture('/export/Untitled material_Roughness.jpg');
 	const cloth_opacity = useTexture('/export/Untitled material_Opacity.jpg');
 	const cloth_height = useTexture('/export/Untitled material_Height.jpg');
-	$: console.log($cloth_height); // eventually THREE.Texture
+	// $: console.log($cloth_height); // eventually THREE.Texture
 </script>
 
 <Environment path="/hdr/" files="stadium_01_2k.hdr" />

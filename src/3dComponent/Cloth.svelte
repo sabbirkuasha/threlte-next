@@ -13,7 +13,7 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./Cloth.glb
 
 	const gltf = useGltf('/Cloth.glb');
 
-	$: console.log($gltf);
+	// $: console.log($gltf);
 
 	const component = forwardEventHandlers();
 

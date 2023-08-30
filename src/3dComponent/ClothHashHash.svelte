@@ -8,6 +8,7 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./ClothHashHash.glb
 	import { T, forwardEventHandlers } from '@threlte/core';
 	import { useGltf } from '@threlte/extras';
 	import { useTexture } from '@threlte/extras';
+	import * as THREE from 'three';
 
 	export const ref = new Group();
 
@@ -21,6 +22,37 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./ClothHashHash.glb
 	const cloth_AO = useTexture('/export/Untitled material_AmbientOcclusion.jpg');
 
 	// $: $cloth_height ? console.log($cloth_height) : 'false';
+
+	const vertexShader = `
+  varying vec2 vUv;
+
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+	const fragmentShader = `
+  uniform sampler2D baseTexture;
+  uniform sampler2D heightTexture;
+  varying vec2 vUv;
+
+  void main() {
+    float height = texture2D(heightTexture, vUv).r;
+    vec2 uv = vUv + (vec2(0.5) - vUv) * height * 0.04;
+    vec4 outColor = texture2D(baseTexture, uv);
+    gl_FragColor = outColor;
+  }
+`;
+
+	let materialz = new THREE.ShaderMaterial({
+		uniforms: {
+			baseTexture: { type: 't', value: $cloth_baseColor },
+			heightTexture: { type: 't', value: $cloth_height }
+		},
+		vertexShader: vertexShader,
+		fragmentShader: fragmentShader
+	});
 
 	$: $gltf
 		? addItem($gltf, $cloth_height, $cloth_opacity, $cloth_AO, $cloth_roughnessMap)
@@ -61,9 +93,16 @@ Command: npx @threlte/gltf@1.0.0-next.13 ./ClothHashHash.glb
 		/> -->
 
 		<!-- Cutom Code -->
-		<T.Mesh
+		<!-- <T.Mesh
 			geometry={gltf.nodes.Cloth.geometry}
 			material={gltf.materials.ClothM}
+			position={[0, 0.4, 0]}
+			scale={0.01}
+		/> -->
+		<!-- Cutom Code -->
+		<T.Mesh
+			geometry={gltf.nodes.Cloth.geometry}
+			material={materialz}
 			position={[0, 0.4, 0]}
 			scale={0.01}
 		/>
