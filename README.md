@@ -27,3 +27,11 @@ Add Dummy helper, Axis to any object at any time **(Low Priority)**
 GLTF Animation export, import & customization, configuration **(Low Prority)**
 
 Imporving render quality (Post process or anything that make the render looks realistic) **(Low Priority)**
+
+### Some Usefull command
+
+> Convert gltf to svelte file
+
+```terminal
+npx @threlte/gltf@latest '.\static\GLTF\DrawCord_glb + textures\Draw cord_V2.gltf'
+```
