@@ -1,6 +1,6 @@
 <script>
 	import { T } from '@threlte/core';
-	import { Environment, OrbitControls, TransformControls } from '@threlte/extras';
+	import { ContactShadows, Environment, OrbitControls, TransformControls } from '@threlte/extras';
 	import { BoxGeometry, DirectionalLightHelper, MeshStandardMaterial } from 'three';
 
 	import ClothFolded from '../../3dComponent/ClothFolded.svelte';
@@ -13,6 +13,9 @@
 	isBackground
 	files="stadium_01_2k.hdr"
 />
+<TransformControls>
+	<ContactShadows opacity={1} scale={15} blur={5} far={10} resolution={1024} color="#000000" />
+</TransformControls>
 
 <T.PerspectiveCamera makeDefault position={[10, 5, 10]} lookAt.y={0.0}>
 	<OrbitControls enableDamping />
