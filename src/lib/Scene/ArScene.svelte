@@ -22,6 +22,7 @@
 		if (hit) {
 			reticle.visible = true;
 			reticle.matrix.copy(hitMatrix);
+			console.log(hitMatrix);
 		} else {
 			reticle.visible = false;
 		}
