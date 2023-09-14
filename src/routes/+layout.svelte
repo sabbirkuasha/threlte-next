@@ -14,6 +14,7 @@
 		<a class="w-8 h-8 rounded p-2 bg-gray-700" href="/drawCord">drawCord</a>
 		<a class="w-8 h-8 rounded p-2 bg-gray-700" href="/wovenElastic">wovenElastic</a>
 		<a class="w-8 h-8 rounded p-2 bg-gray-700" href="/overRider">overRider</a>
+		<a class="w-8 h-8 rounded p-2 bg-gray-700" href="/ar">ar</a>
 	</nav>
 	<slot />
 </main>
