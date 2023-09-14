@@ -2,6 +2,9 @@
 	import { T } from '@threlte/core';
 	import { ContactShadows, Environment, OrbitControls, TransformControls } from '@threlte/extras';
 	import { BoxGeometry, DirectionalLightHelper, MeshStandardMaterial } from 'three';
+
+	import { Project, Sheet } from '@threlte/theatre';
+
 	import WovenElastic from '../../3dComponent/WovenElastic.svelte';
 </script>
 
@@ -13,6 +16,7 @@
 	files="studio_small_01_1k.hdr"
 />
 <!-- <TransformControls> -->
+
 <ContactShadows
 	opacity={1}
 	scale={30}
@@ -22,6 +26,7 @@
 	resolution={1024}
 	color="#000000"
 />
+
 <!-- </TransformControls> -->
 
 <T.PerspectiveCamera makeDefault position={[0, 7, 20]} lookAt.y={0.0}>
@@ -29,5 +34,8 @@
 </T.PerspectiveCamera>
 
 <!-- <T.GridHelper args={[20, 20]} /> -->
-
-<WovenElastic scale={10} position={[0, -2.5, 0]} />
+<Project name="Woven">
+	<Sheet name="Sheet A">
+		<WovenElastic scale={10} position={[0, -2.5, 0]} />
+	</Sheet>
+</Project>

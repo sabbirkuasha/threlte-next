@@ -1,5 +1,6 @@
 <script>
 	import { Canvas } from '@threlte/core';
+	import { Theatre } from '@threlte/theatre';
 
 	import { useProgress } from '@threlte/extras';
 	import { tweened } from 'svelte/motion';
@@ -11,6 +12,10 @@
 	});
 
 	$: tweenedProgress.set($progress);
+
+	import { Studio } from '@threlte/theatre';
+	// Using SvelteKit
+	import { dev } from '$app/environment';
 </script>
 
 <svelte:head>
@@ -21,10 +26,13 @@
 	<progress class="progress progress-warning w-56" value={$tweenedProgress} max="1" />
 {/if}
 
+<Studio enabled={dev} />
 <section class="p-5">
 	<div class=" ring w-full h-[800px]">
 		<Canvas>
-			<WovenElasticScene />
+			<Theatre>
+				<WovenElasticScene />
+			</Theatre>
 		</Canvas>
 	</div>
 </section>

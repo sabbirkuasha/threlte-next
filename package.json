@@ -31,8 +31,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@theatre/core": "^0.6.1",
-		"@theatre/studio": "^0.6.1",
+		"@theatre/core": "^0.6.2",
+		"@theatre/studio": "^0.6.2",
 		"@threlte/core": "^6.0.0-next.9",
 		"@threlte/extras": "^5.0.0-next.13",
 		"@threlte/theatre": "^0.1.0-next.1",

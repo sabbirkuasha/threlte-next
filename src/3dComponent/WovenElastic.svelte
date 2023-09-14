@@ -13,6 +13,8 @@ Command: npx @threlte/gltf@1.0.1 .\static\GLTF\WovenElastic\WovenElastic.gltf
 	const gltf = useGltf('/GLTF/WovenElastic/WovenElastic.gltf');
 
 	const component = forwardEventHandlers();
+
+	// import { Theatre } from '@threlte/theatre';
 </script>
 
 <T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
